@@ -1,0 +1,73 @@
+---
+
+# 📌 필독 – Firebase 설정 및 Firestore 보안 규칙 안내
+
+본 프로젝트는  Firebase + Firestore 를 사용합니다.
+아래 내용을 이해하지 못하면  데이터가 저장되지 않거나, 보이지 않거나, 삭제되지 않는 문제가 반드시 발생 합니다.
+---
+
+## 1️⃣ Firebase 접속 정보 설정 (필수)
+
+아래 코드는  실제 Firebase 프로젝트 정보가 들어가야만 동작 합니다.
+프로젝트에서 src 디렉토리 밑에 있는 firebase.js 파일을 확인하세요.
+
+
+const firebaseConfig = {
+  apiKey: "<당신의 Firebase API Key를 넣어주세요>",
+  authDomain: "<당신의 Firebase Auth Domain을 넣어주세요>",
+  projectId: "<당신의 Firebase Project ID를 넣어주세요>",
+  storageBucket: "<당신의 Firebase Storage Bucket을 넣어주세요>",
+  messagingSenderId: "<당신의 Firebase Messaging Sender ID를 넣어주세요>",
+  appId: "<당신의 Firebase App ID를 넣어주세요>",
+  measurementId: "<당신의 Firebase Measurement ID를 넣어주세요>"
+};
+
+
+### 🔎 어디서 가져오나요?
+
+Firebase 콘솔 접속 →  프로젝트 설정 → 일반 → 내 앱 
+→ 위 항목들을  복사해서 그대로 붙여 넣기 
+
+❗ 이 값이 하나라도 틀리면
+
+* Firestore 접속 ❌
+* 로그인 ❌
+* 데이터 저장 ❌
+
+---
+
+## 2️⃣ Firestore 보안 규칙 (매우 중요)
+
+이 프로젝트는  "로그인한 본인만 자신의 todo를 볼 수 있도록"  설계되어 있습니다.
+강의 영상에서 설정한 Firestore 보안 규칙은 아래와 같습니다.
+자세한 내용은 강의 영상을 참고하세요.
+
+
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    match /todos/{todoId} {
+
+      // 🔍 읽기: 로그인했고, 이 문서의 uid가 내 uid일 때만
+      allow read: if request.auth != null
+                  && resource.data.uid == request.auth.uid;
+
+      // ➕ 생성: 로그인했고, 생성하려는 문서의 uid가 내 uid일 때만
+      allow create: if request.auth != null
+                    && request.resource.data.uid == request.auth.uid;
+
+      // ✏️ 수정: 로그인했고, 기존 문서의 uid가 내 uid일 때만
+      allow update: if request.auth != null
+                    && resource.data.uid == request.auth.uid;
+
+      // 🗑 삭제: 로그인했고, 기존 문서의 uid가 내 uid일 때만
+      allow delete: if request.auth != null
+                    && resource.data.uid == request.auth.uid;
+    }
+  }
+}
+
+
+---
+

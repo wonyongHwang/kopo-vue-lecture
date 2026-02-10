@@ -1,0 +1,33 @@
+---
+
+# 📌 필독 – Firebase 설정 안내
+
+본 프로젝트는  Firebase + Firestore 를 사용합니다.
+아래 내용을 이해하지 못하면  데이터가 저장되지 않거나, 보이지 않거나, 삭제되지 않는 문제가 반드시 발생 합니다.
+---
+
+## 1️⃣ Firebase 접속 정보 설정 (필수)
+
+아래 코드는  실제 Firebase 프로젝트 정보가 들어가야만 동작 합니다.
+프로젝트에서 src 디렉토리 밑에 있는 firebase.js 파일을 확인하세요.
+
+
+const firebaseConfig = {
+  apiKey: "<당신의 Firebase API Key를 넣어주세요>",
+  authDomain: "<당신의 Firebase Auth Domain을 넣어주세요>",
+  projectId: "<당신의 Firebase Project ID를 넣어주세요>",
+  storageBucket: "<당신의 Firebase Storage Bucket을 넣어주세요>",
+  messagingSenderId: "<당신의 Firebase Messaging Sender ID를 넣어주세요>",
+  appId: "<당신의 Firebase App ID를 넣어주세요>",
+  measurementId: "<당신의 Firebase Measurement ID를 넣어주세요>"
+};
+
+
+### 🔎 어디서 가져오나요?
+
+Firebase 콘솔 접속 →  프로젝트 설정 → 일반 → 내 앱 
+→ 위 항목들을  복사해서 그대로 붙여 넣기 
+
+
+
+
