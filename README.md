@@ -9,10 +9,10 @@
 
 ## 📖 소개
 
-본 저장소는 Vue.js 프레임워크의 기초부터 실전 프로젝트까지 단계적으로 학습할 수 있도록 구성된 교육용 자료입니다. 
-각 챕터별 강의 자료(PDF)와 실습 코드를 포함하고 있어 이론과 실습을 동시에 진행할 수 있습니다.
-강의는 아래 유튜브 링크를 통해서 진행합니다.
-https://www.youtube.com/playlist?list=PLlWoe5hcgrk4qQVIBxDA3d-5ZRfYuITxb
+- 본 저장소는 Vue.js 프레임워크의 기초부터 실전 프로젝트까지 단계적으로 학습할 수 있도록 구성된 교육용 자료입니다.
+- 각 챕터별 강의 자료(PDF)와 실습 코드를 포함하고 있어 이론과 실습을 동시에 진행할 수 있습니다.
+- 강의는 아래 유튜브 링크를 통해서 진행합니다.
+- https://www.youtube.com/playlist?list=PLlWoe5hcgrk4qQVIBxDA3d-5ZRfYuITxb
 
 ## 🎯 학습 목표
 
